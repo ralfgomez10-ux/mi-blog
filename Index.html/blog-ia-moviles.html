@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La IA ya no solo conversa | Blog de tecnología</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111a2b; --muted:#56627a; --paper:#f2f5fa; --panel:#ffffff; --line:#d9e0ec;
+  --signal:#0b7a86; --signal-soft:#d8eef0; --warm:#e7a83a;
+  --head:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e8edf6; --muted:#9aa7bf; --paper:#0f1522; --panel:#172033; --line:#2a3650;
+    --signal:#4fc3cf; --signal-soft:#17323a; --warm:#f0b951;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e8edf6; --muted:#9aa7bf; --paper:#0f1522; --panel:#172033; --line:#2a3650;
+  --signal:#4fc3cf; --signal-soft:#17323a; --warm:#f0b951;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.7}
+a{color:var(--signal)}
+:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
+
+.top{max-width:1080px;margin:0 auto;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--head)}
+.brand{font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
+.top nav{display:flex;gap:20px;font-weight:500;font-size:.95rem;color:var(--muted)}
+.top nav a{color:inherit;text-decoration:none}
+.top nav a:hover{color:var(--signal)}
+
+.hero{max-width:1080px;margin:0 auto;padding:40px 24px 28px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;font-family:var(--head);font-size:.85rem;font-weight:700}
+.chip{padding:4px 12px;border-radius:999px;background:var(--signal-soft);color:var(--signal)}
+.hero h1{font-family:var(--head);font-weight:800;font-size:clamp(2.2rem,6.2vw,4.4rem);line-height:1.04;letter-spacing:-.025em;margin:0 0 18px;max-width:17ch}
+.hero p.meta{margin:0;color:var(--muted);font-family:var(--head);font-size:.95rem}
+
+.layout{max-width:1080px;margin:0 auto;padding:12px 24px 64px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:56px;align-items:start}
+article{max-width:68ch}
+article .lead{font-size:1.3rem;line-height:1.6;color:var(--ink);border-left:4px solid var(--warm);padding-left:18px;margin:0 0 8px}
+article h2{font-family:var(--head);font-weight:700;font-size:1.65rem;line-height:1.2;letter-spacing:-.01em;margin:2.4rem 0 .6rem}
+article p{margin:0 0 1.1rem}
+article ul{padding-left:1.2rem;margin:0 0 1.2rem}
+article li{margin-bottom:.6rem}
+article li strong{font-family:var(--head)}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;font-size:1rem;color:var(--muted);margin:0 0 1.2rem}
+
+.prices{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:1.6rem 0}
+.prices h3{font-family:var(--head);font-size:1.05rem;margin:0 0 14px}
+.row{display:grid;grid-template-columns:130px 1fr 64px;gap:12px;align-items:center;font-family:var(--head);font-size:.92rem;margin-bottom:10px}
+.bar{height:14px;border-radius:7px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--signal);border-radius:7px}
+.row.hl .bar i{background:var(--warm)}
+.row span:last-child{text-align:right;font-weight:700}
+.prices small{display:block;color:var(--muted);font-family:var(--body);font-size:.85rem;margin-top:6px}
+
+aside{position:sticky;top:20px;font-family:var(--head)}
+aside h2{font-size:1.05rem;margin:0 0 12px}
+.fact{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.fact b{display:block;font-size:1.7rem;line-height:1.1;letter-spacing:-.02em;color:var(--signal)}
+.fact span{font-size:.9rem;color:var(--muted);line-height:1.4;display:block;margin-top:4px}
+
+.closing{margin-top:2.6rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+.closing ol{padding-left:1.3rem}
+footer{max-width:1080px;margin:0 auto;padding:24px;color:var(--muted);font-family:var(--head);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:28px}
+  aside{position:static}
+  .row{grid-template-columns:104px 1fr 56px}
+  .top nav{display:none}
+}
+@media (prefers-reduced-motion:no-preference){
+  .bar i{animation:grow .9s ease-out both}
+  @keyframes grow{from{width:0}}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">Circuito</div>
+  <nav aria-label="Secciones"><a href="#ia">Inteligencia artificial</a><a href="#moviles">Móviles</a><a href="#cierre">Conclusiones</a></nav>
+</header>
+
+<section class="hero">
+  <div class="chips"><span class="chip">Inteligencia artificial</span><span class="chip">Tecnología móvil</span></div>
+  <h1>La IA ya no solo conversa: ahora trabaja, compra y se cuela en tu bolsillo</h1>
+  <p class="meta">Crónica de tecnología, 2 de octubre de 2026</p>
+</section>
+
+<div class="layout">
+<article>
+  <p class="lead">Hace unos años la inteligencia artificial era una pestaña del navegador donde escribías preguntas. Hoy parece haberse mudado a todas partes: al teléfono, a la cámara, a la tienda online y hasta a los tribunales.</p>
+
+  <h2 id="ia">La IA pasa de responder a ejecutar</h2>
+  <p>El cambio de fondo es de enfoque. Un análisis de Xataka sobre Gemini 4 sostiene que el producto ya no es el chat sino el trabajo largo y autónomo, a raíz de que el modelo puede generar un millón de tokens de una sola vez. En la práctica, eso equivale a encargarle un informe, un código completo o un análisis extenso y volver más tarde a revisar el resultado.</p>
+  <p>OpenAI va en la misma dirección. Tras su DevDay, presentó agentes llamados «dots» y un espacio colaborativo llamado Pages. Ahora, además, ChatGPT permite probarte ropa virtualmente subiendo tus propias fotos, un movimiento hacia el comercio electrónico, terreno donde Google y Amazon compiten desde hace años.</p>
+
+  <h2>IA que ve, describe y conversa con rostro</h2>
+  <p>Google lanzó hoy <strong>Guided Vision</strong> en Gemini Live. Ofrece descripciones de audio en tiempo real de lo que enfoques con la cámara del teléfono, y está disponible en móviles Android compatibles. Es un ejemplo de IA con un uso práctico claro, sobre todo en accesibilidad.</p>
+  <p>En el extremo más llamativo, Tavus presentó Griffin, un sistema para sostener conversaciones por video en tiempo real, y lo anunció como el primer modelo que supera el test de Turing en video.</p>
+  <p class="note">Conviene leerlo con cautela: una empresa cuyo producto es conversar con una cara artificial tiene todo el incentivo para medir y celebrar que pase desapercibida. Es un resultado interesante, pero lo mide quien lo vende.</p>
+
+  <h2>Las preguntas incómodas: regulación y responsabilidad</h2>
+  <p>Mientras la tecnología avanza, el debate sobre sus límites sube de tono. Según Xataka, los directivos de la IA se reunieron esta semana con la Administración Trump para decidir si se frena o no el desarrollo, y Jensen Huang y otros CEO confrontaron a Dario Amodei por sus mensajes sobre seguridad. Hay posturas legítimas en ambos lados: quienes piden cautela ante los riesgos y quienes temen que frenar el desarrollo cueste competitividad.</p>
+  <p>En paralelo, OpenAI enfrenta una demanda que plantea quién responde cuando una IA comete un delito, y argumenta que no puede eximirse alegando que la IA actuó de forma autónoma. Si los agentes ganan autonomía, cada vez será más difícil esquivar esa pregunta.</p>
+
+  <h2 id="moviles">Móviles: el otoño de Apple</h2>
+  <p>El gran evento de la temporada fue el de Apple el 9 de septiembre, el primero bajo el mando del nuevo CEO, John Ternus. Presentó su primer iPhone plegable, el <strong>iPhone Duo</strong>, junto con los iPhone 18 Pro y Pro Max, impulsados por el chip A20 Pro de 2 nanómetros.</p>
+  <ul>
+    <li><strong>Precios:</strong> el iPhone 18 Pro parte de 1.199 dólares y el Pro Max de 1.299, frente a 1.099 y 1.199 de la generación anterior. Todo sube unos 100 dólares.</li>
+    <li><strong>Software:</strong> iOS 27 llegó el 14 de septiembre a los iPhone compatibles.</li>
+    <li><strong>Siri AI:</strong> el rediseño de Siri es la apuesta de fondo. Estará disponible en español en octubre, pero no llegará a la Unión Europea ni a China, aunque Apple Intelligence sí estará en la UE.</li>
+    <li><strong>Calendario partido:</strong> según se reportó, el iPhone 18 estándar y un 18e económico se retrasan hasta la primavera de 2027.</li>
+  </ul>
+
+  <h2>Android no se queda atrás</h2>
+  <p>Google se adelantó en agosto. Presentó los Pixel 11, 11 Pro, 11 Pro XL y 11 Pro Fold el 12 de agosto, con venta general desde el 20. Por primera vez el plegable salió a la vez que el resto de la familia. Tampoco fue barato: el Pixel 11 base arranca en 899 dólares, frente a 799 del Pixel 10.</p>
+
+  <div class="prices" role="img" aria-label="Precios de salida: Pixel 11 899 dólares, iPhone 18 Pro 1199, iPhone 18 Pro Max 1299, iPhone Duo 1999">
+    <h3>Precio de salida en dólares</h3>
+    <div class="row"><span>Pixel 11</span><div class="bar"><i style="width:45%"></i></div><span>$899</span></div>
+    <div class="row"><span>iPhone 18 Pro</span><div class="bar"><i style="width:60%"></i></div><span>$1.199</span></div>
+    <div class="row"><span>iPhone 18 Pro Max</span><div class="bar"><i style="width:65%"></i></div><span>$1.299</span></div>
+    <div class="row hl"><span>iPhone Duo</span><div class="bar"><i style="width:100%"></i></div><span>$1.999</span></div>
+    <small>Precios base en Estados Unidos.</small>
+  </div>
+
+  <section class="closing" id="cierre">
+    <h2 style="margin-top:0">Lo que me llevo de todo esto</h2>
+    <ol>
+      <li><strong>Los teléfonos suben de precio, y la IA es la excusa.</strong> Apple y Google subieron sus tarifas el mismo año en que presumen de asistentes más capaces.</li>
+      <li><strong>El plegable se normaliza.</strong> Con Apple dentro, deja de ser un nicho.</li>
+      <li><strong>La IA se mide por lo que hace, no por lo que dice.</strong> Agentes, compras y cámara en tiempo real marcan el rumbo.</li>
+      <li><strong>La regulación y la responsabilidad legal ya son parte del producto.</strong></li>
+    </ol>
+    <p>La pregunta para el próximo año no es si la IA será más potente, sino quién responde por lo que haga y cuánto estaremos dispuestos a pagar por tenerla en el bolsillo.</p>
+  </section>
+</article>
+
+<aside aria-label="Datos de la semana">
+  <h2>Datos de la semana</h2>
+  <div class="fact"><b>1 millón</b><span>de tokens que Gemini 4 puede escribir de una sola vez</span></div>
+  <div class="fact"><b>$1.999</b><span>precio inicial del iPhone Duo, el primer iPhone plegable</span></div>
+  <div class="fact"><b>+$100</b><span>de subida en los iPhone 18 Pro frente a la generación anterior</span></div>
+  <div class="fact"><b>20 de agosto</b><span>llegada de la familia Pixel 11, plegable incluido</span></div>
+</aside>
+</div>
+
+<footer>Circuito, un blog de tecnología. Contenido basado en noticias publicadas hasta el 2 de octubre de 2026.</footer>
+</body>
+</html>
